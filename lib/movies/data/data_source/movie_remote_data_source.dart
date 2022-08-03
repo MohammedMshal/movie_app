@@ -6,13 +6,38 @@ import 'package:dio/dio.dart';
 
 abstract class BaseRemoteDataSource{
   Future<List<MoviesModel>> getNowPlayingMovies();
-  Future<List<MoviesModel>> getNowPopuralMovies();
+
+  Future<List<MoviesModel>> getNowPopularMovies();
+
+  Future<List<MoviesModel>> getTopRatedMovies();
 }
 
 class MovieRemoteDataSource extends BaseRemoteDataSource {
   @override
   Future<List<MoviesModel>> getNowPlayingMovies() async {
     final response = await Dio().get(ApiConstance.nowPlayingMoviePath);
+    if (response.statusCode == 200) {
+      return List<MoviesModel>.from((response.data['results'] as List)
+          .map((e) => MoviesModel.fromJson(e)));
+    } else {
+      throw ServerException(errorModel: ErrorModel.fromJson(response.data));
+    }
+  }
+
+  @override
+  Future<List<MoviesModel>> getNowPopularMovies() async {
+    final response = await Dio().get(ApiConstance.popularMoviePath);
+    if (response.statusCode == 200) {
+      return List<MoviesModel>.from((response.data['results'] as List)
+          .map((e) => MoviesModel.fromJson(e)));
+    } else {
+      throw ServerException(errorModel: ErrorModel.fromJson(response.data));
+    }
+  }
+
+  @override
+  Future<List<MoviesModel>> getTopRatedMovies() async {
+    final response = await Dio().get(ApiConstance.topRatedMoviePath);
     if (response.statusCode == 200) {
       return List<MoviesModel>.from((response.data['results'] as List)
           .map((e) => MoviesModel.fromJson(e)));
