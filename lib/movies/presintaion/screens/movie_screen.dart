@@ -1,3 +1,4 @@
+import 'package:clean_arctitcher/core/services/services_locator.dart';
 import 'package:clean_arctitcher/movies/presintaion/controller/movies_bloc.dart';
 import 'package:clean_arctitcher/movies/presintaion/controller/movies_event.dart';
 import 'package:clean_arctitcher/movies/presintaion/controller/movies_states.dart';
@@ -11,11 +12,12 @@ class MoviesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (BuildContext context) {
-        return MoviesBloc()
+        return MoviesBloc(getIt())
           ..add(GetNowPlayingEvent());
       },
       child: BlocBuilder<MoviesBloc, MoviesState>(
         builder: (context, state) {
+          // ignore: avoid_print
           print(state);
           return const Scaffold();
         },

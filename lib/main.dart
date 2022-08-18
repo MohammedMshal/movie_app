@@ -1,7 +1,9 @@
+import 'package:clean_arctitcher/core/services/services_locator.dart';
 import 'package:clean_arctitcher/movies/presintaion/screens/movie_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  ServicesLocator().init();
   runApp(const MyApp());
 }
 
