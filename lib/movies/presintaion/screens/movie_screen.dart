@@ -5,34 +5,13 @@ import 'package:clean_arctitcher/movies/domain/repository/base_movies_repository
 import 'package:clean_arctitcher/movies/domain/usecases/get_now_playing_movies_usecases.dart';
 import 'package:flutter/material.dart';
 
-class MoviesScreen extends StatefulWidget {
+class MoviesScreen extends StatelessWidget {
   const MoviesScreen({Key? key}) : super(key: key);
 
   @override
-  State<MoviesScreen> createState() => _MoviesScreenState();
-}
-
-class _MoviesScreenState extends State<MoviesScreen> {
-  List <Movie> movies = [];
-  @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+   return Scaffold();
   }
 
-  @override
-  void initState() {
-    super.initState();
-    _getDate();
-  }
 
-  void _getDate() async {
-    BaseRemoteDataSource baseRemoteDataSource = MovieRemoteDataSource();
-    BaseMoviesRepository baseMoviesRepository = MoviesRepository(
-        baseRemoteDataSource);
-    final result =  await GetPlayingMoviesUseCases(baseMoviesRepository).execute();
-    result.fold((l) => null, (r) {
-movies = r;
-    });
-    print(result);
-  }
 }
