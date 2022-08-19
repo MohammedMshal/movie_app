@@ -92,7 +92,7 @@ class NowPlayingComponents extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 16.0),
                                   child: Text(
-                                    item.title,
+                                    item.title.toString(),
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(
                                       color: Colors.white,
