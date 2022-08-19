@@ -23,7 +23,7 @@ class MoviesRepository extends BaseMoviesRepository {
 
   @override
   Future<Either<Failure, List<Movie>>> getPopularMovies() async{
-    final result = await baseRemoteDataSource.getNowPopularMovies();
+    final result = await baseRemoteDataSource.getPopularMovies();
     try{
       return Right(result);
     } on ServerException catch(failuer){

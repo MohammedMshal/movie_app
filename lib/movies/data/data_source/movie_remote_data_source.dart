@@ -7,7 +7,7 @@ import 'package:dio/dio.dart';
 abstract class BaseRemoteDataSource{
   Future<List<MoviesModel>> getNowPlayingMovies();
 
-  Future<List<MoviesModel>> getNowPopularMovies();
+  Future<List<MoviesModel>> getPopularMovies();
 
   Future<List<MoviesModel>> getTopRatedMovies();
 }
@@ -25,7 +25,7 @@ class MovieRemoteDataSource extends BaseRemoteDataSource {
   }
 
   @override
-  Future<List<MoviesModel>> getNowPopularMovies() async {
+  Future<List<MoviesModel>> getPopularMovies() async {
     final response = await Dio().get(ApiConstance.popularMoviePath);
     if (response.statusCode == 200) {
       return List<MoviesModel>.from((response.data['results'] as List)

@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../core/network/api_constans.dart';
+import '../../../core/utils/enums.dart';
 
 class PopularComponents extends StatelessWidget {
   const PopularComponents({Key? key}) : super(key: key);
@@ -14,33 +15,40 @@ class PopularComponents extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MoviesBloc, MoviesState>(
+      buildWhen: (previous, current) => previous.popularState != current.popularState,
       builder: (context, state) {
-        return FadeIn(
-          duration: const Duration(milliseconds: 500),
-          child: SizedBox(
-            height: 170.0,
-            child: ListView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              itemCount: state.popularMovies.length,
-              itemBuilder: (context, index) {
-                final movie = state.popularMovies[index];
-                return Container(
-                  padding: const EdgeInsets.only(right: 8.0),
-                  child: InkWell(
-                    onTap: () {
-                      /// TODO : NAVIGATE TO  MOVIE DETAILS
-                    },
-                    child: ClipRRect(
-                      borderRadius: const BorderRadius.all(Radius.circular(
-                          8.0)),
-                      child: CachedNetworkImage(
-                        width: 120.0,
-                        fit: BoxFit.cover,
-                        imageUrl: ApiConstance.imageUrl(movie.backdropPath),
-                        placeholder: (context, url) =>
-                            Shimmer.fromColors(
+        switch(state.popularState) {
+          case RequestState.loading:
+            return const SizedBox(
+              height: 170,
+              child: Center(child: CircularProgressIndicator()),
+            );
+          case RequestState.loaded:
+            return FadeIn(
+              duration: const Duration(milliseconds: 500),
+              child: SizedBox(
+                height: 170.0,
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  itemCount: state.popularMovies.length,
+                  itemBuilder: (context, index) {
+                    final movie = state.popularMovies[index];
+                    return Container(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: InkWell(
+                        onTap: () {
+                          /// TODO : NAVIGATE TO  MOVIE DETAILS
+                        },
+                        child: ClipRRect(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(8.0)),
+                          child: CachedNetworkImage(
+                            width: 120.0,
+                            fit: BoxFit.cover,
+                            imageUrl: ApiConstance.imageUrl(movie.backdropPath),
+                            placeholder: (context, url) => Shimmer.fromColors(
                               baseColor: Colors.grey[850]!,
                               highlightColor: Colors.grey[800]!,
                               child: Container(
@@ -52,16 +60,22 @@ class PopularComponents extends StatelessWidget {
                                 ),
                               ),
                             ),
-                        errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-        );
+                    );
+                  },
+                ),
+              ),
+            );
+          case RequestState.error:
+            return  SizedBox(
+              height: 170,
+              child: Text(state.popularMessage),
+            );
+        }
       },
     );
   }

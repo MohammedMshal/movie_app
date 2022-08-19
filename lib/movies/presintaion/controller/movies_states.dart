@@ -9,7 +9,12 @@ class MoviesState extends Equatable {
   final String nowPlayingMessage;
   final List<Movie> popularMovies;
   final RequestState popularState;
+
   final String popularMessage;
+  final List<Movie> topRatedMovies;
+  final RequestState topRatedState;
+  final String topRatedMessage;
+
   const MoviesState({
     this.nowPlayingState = RequestState.loading,
     this.nowPlayingMessage = '',
@@ -17,6 +22,9 @@ class MoviesState extends Equatable {
     this.popularMovies = const [],
     this.popularState = RequestState.loading,
     this.popularMessage = '',
+    this.topRatedMovies = const [],
+    this.topRatedState = RequestState.loading,
+    this.topRatedMessage = '',
   });
   MoviesState copyWith({
     List<Movie>? nowPlayingMovies,
@@ -25,7 +33,10 @@ class MoviesState extends Equatable {
     List<Movie>? popularMovies,
     RequestState? popularState,
     String? popularMessage,
-}){
+    List<Movie>? topRatedMovies,
+    RequestState? topRatedState,
+    String? topRatedMessage,
+  }){
     return MoviesState(
       nowPlayingMovies: nowPlayingMovies ?? this.nowPlayingMovies,
       nowPlayingState: nowPlayingState ?? this.nowPlayingState,
@@ -33,17 +44,24 @@ class MoviesState extends Equatable {
       popularMovies: popularMovies ?? this.popularMovies,
       popularState: popularState ?? this.popularState,
       popularMessage: popularMessage ?? this.popularMessage,
+      topRatedMovies: topRatedMovies ?? this.topRatedMovies,
+      topRatedState: topRatedState ?? this.topRatedState,
+      topRatedMessage: topRatedMessage ?? this.topRatedMessage,
     );
   }
 
   @override
   // TODO: implement props
-  List<Object?> get props => [
+  List<Object?> get props =>
+      [
         nowPlayingMovies,
         nowPlayingState,
         nowPlayingMessage,
         popularMovies,
         popularState,
         popularMessage,
+        topRatedMovies,
+        topRatedState,
+        topRatedMessage,
       ];
 }
