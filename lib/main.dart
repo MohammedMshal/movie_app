@@ -1,5 +1,5 @@
 import 'package:clean_arctitcher/core/services/services_locator.dart';
-import 'package:clean_arctitcher/movies/presintaion/screens/movie_screen.dart';
+import 'package:clean_arctitcher/movies/presintaion/screens/movies_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MoviesScreen(),
+      home: const MainMoviesScreen(),
     );
   }
 }

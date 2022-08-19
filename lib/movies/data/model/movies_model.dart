@@ -1,7 +1,7 @@
 import 'package:clean_arctitcher/movies/domain/entities/movie.dart';
 
 class MoviesModel extends Movie {
-  const MoviesModel({
+  const MoviesModel ({
     required super.id,
     required super.title,
     required super.backdropPath,
@@ -16,8 +16,7 @@ class MoviesModel extends Movie {
         title: json['title'],
         backdropPath: json['backdrop_path'],
         genreIds: List<int>.from(json['genre_ids'].map((e) => e)),
-        overView: json['overview'],
-        //TODO : CHICK THIS
+    overView: json['overview'],
         voteAverage: json['vote_average'].toDouble(),
         releaseDate: json['release_date'],
       );
