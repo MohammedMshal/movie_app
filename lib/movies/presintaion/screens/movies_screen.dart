@@ -3,6 +3,7 @@ import 'package:clean_arctitcher/movies/presintaion/components/now_playing_compo
 import 'package:clean_arctitcher/movies/presintaion/components/popular_components.dart';
 import 'package:clean_arctitcher/movies/presintaion/components/top_rated_components.dart';
 import 'package:clean_arctitcher/movies/presintaion/controller/movies_bloc.dart';
+import 'package:clean_arctitcher/movies/presintaion/controller/movies_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,7 +15,7 @@ class MainMoviesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<MoviesBloc>(),
+      create: (context) => getIt<MoviesBloc>()..add(GetNowPlayingEvent()),
       child: Scaffold(
         backgroundColor: Colors.grey.shade900,
         body: SingleChildScrollView(
