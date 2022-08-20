@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:clean_arctitcher/core/use_case/base_use_case.dart';
 import 'package:clean_arctitcher/core/utils/enums.dart';
 import 'package:clean_arctitcher/movies/presintaion/controller/movies_event.dart';
 import 'package:clean_arctitcher/movies/presintaion/controller/movies_states.dart';
@@ -31,7 +32,7 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
   }
 
   FutureOr<void> _getNowPlayingMovies(GetNowPlayingEvent event, Emitter<MoviesState> emit) async{
-  final result = await getPlayingMoviesUseCases();
+  final result = await getPlayingMoviesUseCases(const NoParameter());
     result.fold(
       (l) => emit(state.copyWith(
           nowPlayingState: RequestState.error, nowPlayingMessage: l.message)),
@@ -45,7 +46,7 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
   }
 
   FutureOr<void> _getPopularMovies(GetPopularEvent event, Emitter<MoviesState> emit) async{
-    final result = await getPopularMoviesUseCases();
+    final result = await getPopularMoviesUseCases(const NoParameter());
     result.fold(
       (l) => emit(state.copyWith(
           popularState: RequestState.error, popularMessage: l.message)),
@@ -60,7 +61,7 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
 
   FutureOr<void> _getTopRatedMovies(
       GetTopRatedEvent event, Emitter<MoviesState> emit) async {
-    final result = await getPopularMoviesUseCases();
+    final result = await getPopularMoviesUseCases(const NoParameter());
     result.fold(
       (l) => emit(state.copyWith(
           topRatedState: RequestState.error, topRatedMessage: l.message)),

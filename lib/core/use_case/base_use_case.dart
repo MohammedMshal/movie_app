@@ -1,7 +1,15 @@
 import 'package:clean_arctitcher/core/error/failure.dart';
-import 'package:clean_arctitcher/movies/domain/entities/movie.dart';
 import 'package:dartz/dartz.dart';
+import 'package:equatable/equatable.dart';
 
-abstract class BaseUseCase<T>{
-  Future<Either<Failure, T>> call();
+abstract class BaseUseCase<T, Parameters> {
+  Future<Either<Failure, T>> call(Parameters parameters);
+}
+
+class NoParameter extends Equatable {
+
+  const NoParameter();
+
+  @override
+  List<Object> get props => [];
 }

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class MovieDatail extends Equatable {
+class MovieDetail extends Equatable {
   final List<Genres> genres;
   final String backdropPath;
   final int id;
@@ -10,7 +10,7 @@ class MovieDatail extends Equatable {
   final String title;
   final String voteAverage;
 
-  const MovieDatail({
+  const MovieDetail({
     required this.genres,
     required this.backdropPath,
     required this.id,

@@ -2,6 +2,7 @@ import 'package:clean_arctitcher/core/error/exceptions.dart';
 import 'package:clean_arctitcher/core/error/failure.dart';
 import 'package:clean_arctitcher/movies/data/data_source/movie_remote_data_source.dart';
 import 'package:clean_arctitcher/movies/domain/entities/movie.dart';
+import 'package:clean_arctitcher/movies/domain/entities/movie_detail.dart';
 import 'package:clean_arctitcher/movies/domain/repository/base_movies_repository.dart';
 import 'package:dartz/dartz.dart';
 
@@ -39,5 +40,11 @@ class MoviesRepository extends BaseMoviesRepository {
     } on ServerException catch(failure){
       return left(ServerFailure(failure.errorModel.statusMessage));
     }
+  }
+
+  @override
+  Future<Either<Failure, MovieDetail>> getMovieDetails() {
+    // TODO: implement getMovieDetails
+    throw UnimplementedError();
   }
 }

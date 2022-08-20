@@ -5,12 +5,12 @@ import 'package:dartz/dartz.dart';
 
 import '../../../core/error/failure.dart';
 
-class GetTopRatMoviesUseCases extends BaseUseCase<List<Movie>>{
+class GetTopRatMoviesUseCases extends BaseUseCase<List<Movie>, NoParameter>{
   final BaseMoviesRepository baseMoviesRepository;
   GetTopRatMoviesUseCases(this.baseMoviesRepository);
 
   @override
-  Future<Either<Failure, List<Movie>>> call() async{
+  Future<Either<Failure, List<Movie>>> call(NoParameter parameters) async{
     return await baseMoviesRepository.getTapRatedMovies();
   }
 
