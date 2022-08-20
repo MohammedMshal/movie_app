@@ -4,6 +4,9 @@ import 'package:clean_arctitcher/movies/data/data_source/movie_remote_data_sourc
 import 'package:clean_arctitcher/movies/domain/entities/movie.dart';
 import 'package:clean_arctitcher/movies/domain/entities/movie_detail.dart';
 import 'package:clean_arctitcher/movies/domain/repository/base_movies_repository.dart';
+import 'package:clean_arctitcher/movies/domain/usecases/get_movie_details_usecases.dart';
+import 'package:clean_arctitcher/movies/domain/usecases/get_recommendation_usecases.dart';
+import 'package:clean_arctitcher/movies/presintaion/controller/movie_detail_controller/recommendtion.dart';
 import 'package:dartz/dartz.dart';
 
 class MoviesRepository extends BaseMoviesRepository {
@@ -27,8 +30,8 @@ class MoviesRepository extends BaseMoviesRepository {
     final result = await baseRemoteDataSource.getPopularMovies();
     try{
       return Right(result);
-    } on ServerException catch(failuer){
-      return left(ServerFailure(failuer.errorModel.statusMessage));
+    } on ServerException catch(failure){
+      return left(ServerFailure(failure.errorModel.statusMessage));
     }
   }
 
@@ -43,8 +46,22 @@ class MoviesRepository extends BaseMoviesRepository {
   }
 
   @override
-  Future<Either<Failure, MovieDetail>> getMovieDetails() {
-    // TODO: implement getMovieDetails
-    throw UnimplementedError();
+  Future<Either<Failure, MovieDetail>> getMovieDetails(MovieDetailsParameter parameters) async{
+    final result = await baseRemoteDataSource.getMoviesDetails(parameters);
+    try{
+      return Right(result);
+    } on ServerException catch(failure){
+      return left(ServerFailure(failure.errorModel.statusMessage));
+    }
   }
+
+  @override
+  Future<Either<Failure, List<Recommendation>>> getRecommendation(RecommendationParameters parameters) async{
+    final result = await baseRemoteDataSource.getRecommendation(parameters);
+    try{
+      return Right(result);
+    } on ServerException catch(failure){
+      return left(ServerFailure(failure.errorModel.statusMessage));
+    }
 }
+  }

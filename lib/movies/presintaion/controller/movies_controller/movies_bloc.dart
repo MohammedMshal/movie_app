@@ -2,13 +2,14 @@ import 'dart:async';
 
 import 'package:clean_arctitcher/core/use_case/base_use_case.dart';
 import 'package:clean_arctitcher/core/utils/enums.dart';
-import 'package:clean_arctitcher/movies/presintaion/controller/movies_event.dart';
-import 'package:clean_arctitcher/movies/presintaion/controller/movies_states.dart';
+import 'package:clean_arctitcher/movies/presintaion/controller/movies_controller/movies_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../domain/usecases/get_now_playing_movies_usecases.dart';
-import '../../domain/usecases/get_popular_movies_usecases.dart';
-import '../../domain/usecases/get_top_rate_movies_usecases.dart';
+import '../../../domain/usecases/get_now_playing_movies_usecases.dart';
+import '../../../domain/usecases/get_popular_movies_usecases.dart';
+import '../../../domain/usecases/get_top_rate_movies_usecases.dart';
+import 'movies_event.dart';
+
 
 class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
   final GetPlayingMoviesUseCases getPlayingMoviesUseCases;

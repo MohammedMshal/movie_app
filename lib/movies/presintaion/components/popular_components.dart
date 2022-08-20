@@ -1,13 +1,13 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:clean_arctitcher/movies/presintaion/controller/movies_bloc.dart';
-import 'package:clean_arctitcher/movies/presintaion/controller/movies_states.dart';
+import 'package:clean_arctitcher/movies/presintaion/controller/movies_controller/movies_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../core/network/api_constans.dart';
 import '../../../core/utils/enums.dart';
+import '../controller/movies_controller/movies_bloc.dart';
 
 class PopularComponents extends StatelessWidget {
   const PopularComponents({Key? key}) : super(key: key);

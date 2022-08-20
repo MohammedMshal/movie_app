@@ -2,11 +2,12 @@ import 'package:clean_arctitcher/core/services/services_locator.dart';
 import 'package:clean_arctitcher/movies/presintaion/components/now_playing_components.dart';
 import 'package:clean_arctitcher/movies/presintaion/components/popular_components.dart';
 import 'package:clean_arctitcher/movies/presintaion/components/top_rated_components.dart';
-import 'package:clean_arctitcher/movies/presintaion/controller/movies_bloc.dart';
-import 'package:clean_arctitcher/movies/presintaion/controller/movies_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../controller/movies_controller/movies_bloc.dart';
+import '../controller/movies_controller/movies_event.dart';
 
 
 class MainMoviesScreen extends StatelessWidget {
