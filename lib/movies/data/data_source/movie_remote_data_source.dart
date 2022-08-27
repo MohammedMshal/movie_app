@@ -70,7 +70,7 @@ class MovieRemoteDataSource extends BaseRemoteDataSource {
         ApiConstance.recommendationPath(parameters.id));
     if (response.statusCode == 200) {
       return List<RecommendationModel>.from((response.data['results'] as List)
-          .map((e) => MoviesModel.fromJson(e)));
+          .map((e) => RecommendationModel.fromJson(e)));
     } else {
       throw ServerException(errorModel: ErrorModel.fromJson(response.data));
     }

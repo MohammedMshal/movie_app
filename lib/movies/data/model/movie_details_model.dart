@@ -3,7 +3,7 @@ import 'package:clean_arctitcher/movies/domain/entities/movie_detail.dart';
 class MovieDetailsModel extends MovieDetail {
   const MovieDetailsModel(
       {required super.genres,
-      required super.backdropPath,
+      super.backdropPath,
       required super.id,
       required super.overView,
       required super.releaseDate,
@@ -13,8 +13,10 @@ class MovieDetailsModel extends MovieDetail {
 
   factory MovieDetailsModel.fromJson(Map<String, dynamic> json) =>
       MovieDetailsModel(
-        genres: List<GenresModel>.from(json['genres'].map((x) => GenresModel.fromJson(x))),
-        backdropPath: json['backdrop_path'],
+        genres: List<GenresModel>.from(
+            json['genres'].map((x) => GenresModel.fromJson(x))),
+        backdropPath:
+            json['backdrop_path'] ?? '/ugS5FVfCI3RV0ZwZtBV3HAV75OX.jpg',
         id: json['id'],
         overView: json['overview'],
         releaseDate: json['release_date'],

@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:clean_arctitcher/movies/presintaion/controller/movies_controller/movies_states.dart';
+import 'package:clean_arctitcher/movies/presintaion/screens/movie_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -35,7 +36,7 @@ class NowPlayingComponents extends StatelessWidget {
                     return GestureDetector(
                       key: const Key('openMovieMinimalDetail'),
                       onTap: () {
-                        /// TODO : NAVIGATE TO MOVIE DETAILS
+                        Navigator.push(context,MaterialPageRoute(builder: (BuildContext context) => MovieDetailScreen(id: item.id)));
                       },
                       child: Stack(
                         children: [

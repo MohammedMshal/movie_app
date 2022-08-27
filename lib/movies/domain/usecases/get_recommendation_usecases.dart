@@ -5,11 +5,11 @@ import 'package:clean_arctitcher/movies/presintaion/controller/movie_detail_cont
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
-class GetRecommendation
+class GetRecommendationUseCases
     extends BaseUseCase<List<Recommendation>, RecommendationParameters> {
   final BaseMoviesRepository baseMoviesRepository;
 
-  GetRecommendation(this.baseMoviesRepository);
+  GetRecommendationUseCases(this.baseMoviesRepository);
   @override
   Future<Either<Failure, List<Recommendation>>> call(RecommendationParameters parameters) async{
     return await baseMoviesRepository.getRecommendation(parameters);
@@ -19,7 +19,7 @@ class GetRecommendation
 class RecommendationParameters extends Equatable {
   final int id;
 
-  const RecommendationParameters(this.id);
+  const RecommendationParameters({required this.id});
 
   @override
   List<Object> get props => [id];
